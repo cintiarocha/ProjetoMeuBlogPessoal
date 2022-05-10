@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,26 +15,61 @@ import javax.validation.constraints.Size;
 
 import org.springframework.lang.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//transforma o objeto criado em uma tabela no banco de dados
 @Entity
+//dá um nome para a tabela no meu banco de dados
 @Table(name = "postagem")
 
 public class Postagem {
 	
+	// define a coluna de id como chave primaria
 	@Id
+	// equivalente ao auto_increment no mysql
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	// define que o campo é obrigatório
 	@NonNull
 	@Size(min = 5, max = 100)
 	private String titulo;
 	
+	// define um numero minimo e maximo de caracteres no campo 
 	@NotNull
 	@Size(min = 10, max = 500)
 	private String texto;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date = new java.sql.Date(System.currentTimeMillis());
+	
+	@ManyToOne
+	@JsonIgnoreProperties ("postagem")
+	private  TemaModel tema;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
 
+
+
+	
+	
+
+	public TemaModel getTema() {
+		return tema;
+	}
+
+	public void setTema(TemaModel tema) {
+		this.tema = tema;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public long getId() {
 		return id;
