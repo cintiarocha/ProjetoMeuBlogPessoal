@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="tb_usuarios")
+@Table(name="tb_usuario")
 public class Usuario {
 	
 	public Long getId() {
@@ -81,9 +81,34 @@ public class Usuario {
 	
 	private String foto;
 	
+	private String token;
+	
 	// relação entre as tabelas
 	@OneToMany(mappedBy = "usuario" , cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
+	
+	public String getToken() { 
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+	//  constutor cheio 
+	// metodo construtor para teste 
+	// colocar na ordem onde ta sendo declarado aqu na model
+	public Usuario(Long id, String nome, String usuario, String senha, String foto) {
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+		this.foto = foto;
+	}
+
+	// você coloca somente o que vc vai testar 
+	//construtor vazio
+	public Usuario() {}
 
 }
+
