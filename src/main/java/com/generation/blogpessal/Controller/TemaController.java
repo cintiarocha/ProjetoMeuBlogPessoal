@@ -40,13 +40,22 @@ public class TemaController {
 		@PostMapping
 		public ResponseEntity<TemaModel> postTema(@Valid @RequestBody TemaModel tema) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(tema));
-		}
+			}
 		@PutMapping
 		public ResponseEntity<TemaModel> put(@RequestBody TemaModel tema){
 			return repository.findById(tema.getId())
 					.map(resposta -> ResponseEntity.ok().body(repository.save(tema)))
 							.orElse(ResponseEntity.notFound().build());
 		}
+<<<<<<< HEAD
+		@PutMapping
+		public ResponseEntity<TemaModel> put(@RequestBody TemaModel tema){
+			return repository.findById(tema.getId())
+					.map(resposta -> ResponseEntity.ok().body(repository.save(tema)))
+							.orElse(ResponseEntity.notFound().build());
+		}
+=======
+>>>>>>> 64d794a3c8920312bc6e7ac01b228217940e2bde
 		//verificação antes de deletar por id
 		@DeleteMapping("/{id}")
 		public ResponseEntity<?> deletePostagem(@PathVariable Long id) {
@@ -59,4 +68,9 @@ public class TemaController {
 					.orElse(ResponseEntity.notFound().build());
 	}
 }
+<<<<<<< HEAD
 	
+=======
+	
+	
+>>>>>>> 64d794a3c8920312bc6e7ac01b228217940e2bde
