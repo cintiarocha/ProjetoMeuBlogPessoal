@@ -1,7 +1,9 @@
 package com.generation.blogpessal.repository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.AfterAll;
@@ -48,6 +50,19 @@ public class UsuarioRespositoryTest {
 	public void end() {
 		repository.deleteAll();
 	}
+	
+	@Test
+	@DisplayName("Retornar 3 usuarios")
+	public void deveRetornarTresUsuarios() {
+		
+		List<Usuario> listaDeUsuarios = UsuarioRepository.findAllByNomeContainingIgnoreCase("Silva");
+		assertEquals(3, listaDeUsuarios.size());
+		assertTrue(listaDeUsuarios.get(0).getNome().equals("João da Silva"));
+		assertTrue(listaDeUsuarios.get(1).getNome().equals("Maria da Silva"));
+		assertTrue(listaDeUsuarios.get(2).getNome().equals("Joana da Silva"));
+
+	}
+	
 
 		
 	}

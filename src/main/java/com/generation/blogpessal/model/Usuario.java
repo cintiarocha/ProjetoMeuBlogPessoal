@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name="tb_usuario")
 public class Usuario {
@@ -72,6 +74,7 @@ public class Usuario {
 	
 	private String nome;
 	
+	@Schema
 	@NotNull
 	@Email(message = "O usuário deve ser um email valido ex:maria@email.com")
 	private String usuario;
@@ -95,7 +98,7 @@ public class Usuario {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	//  constutor cheio 
+ // constutor cheio 
 	// metodo construtor para teste 
 	// colocar na ordem onde ta sendo declarado aqu na model
 	public Usuario(Long id, String nome, String usuario, String senha, String foto) {

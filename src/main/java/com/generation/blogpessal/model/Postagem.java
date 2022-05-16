@@ -8,11 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -39,7 +38,7 @@ public class Postagem {
 	@Size(min = 10, max = 500)
 	private String texto;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
 	private Date date = new java.sql.Date(System.currentTimeMillis());
 	
 	@ManyToOne
